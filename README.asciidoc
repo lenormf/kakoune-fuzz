@@ -1,7 +1,10 @@
+:url-kakoune: 
+:url-libfuzzer: 
+
 kakoune-fuzz
 ------------
 
-This repository contains some fuzzers based on [libFuzzer](http://llvm.org/docs/LibFuzzer.html) for the [Kakoune](https://github.com/mawww/kakoune) code editor.
+This repository contains some fuzzers based on http://llvm.org/docs/LibFuzzer.html[libFuzzer] for the https://github.com/mawww/kakoune[Kakoune] code editor.
 
 Setup
 ~~~~~
