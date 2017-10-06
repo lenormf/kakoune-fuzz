@@ -1,0 +1,62 @@
+kakoune-fuzz
+------------
+
+This repository contains some fuzzers based on [libFuzzer](http://llvm.org/docs/LibFuzzer.html) for the [Kakoune](https://github.com/mawww/kakoune) code editor.
+
+Setup
+~~~~~
+
+The following instructions assume that the execution environment (the host system, or a `docker` container) are Debian-based.
+
+Clone this repository in the root directory of Kakoune:
+
+```
+$ git clone https://github.com/mawww/kakoune.git && cd kakoune
+$ git clone https://github.com/lenormf/kakoune-fuzz.git
+```
+
+Install the dependencies needed to build the fuzzers with the setup script (`sudo` needed):
+
+```
+$ cd kakoune-fuzz
+$ ./setup_environment.sh
+```
+
+Compiling
+~~~~~~~~~
+
+`cd` into the directory of a given fuzzer within this repository, then apply any patch stored in it. Sometimes modifications in the project's code are necessary to make fuzzing easier, the patches implement them; note however that the patches might conflict from one fuzzer to the other:
+
+```
+$ cd some_fuzzer
+$ git apply *.patch
+```
+
+Compile the fuzzer:
+
+```
+$ make
+```
+
+Every binary that results from the compilation process is an individual fuzzer, some fuzzer directories might generate one or several depending on the coverage targeted.
+
+Once a fuzzer has successfully been compiled, you can safely reset the state of the repository to move on to another fuzzer.
+
+```
+$ git reset --hard HEAD
+```
+
+Running a fuzzer
+~~~~~~~~~~~~~~~~
+
+Read the list of all available options using the following command:
+
+```
+$ ./fuzzer -help=1
+```
+
+Once you've decided which flag you're going to use to run the fuzzer, run it, and wait for results:
+
+```
+$ ./fuzzer -only_ascii=1 -detect_leaks=0
+```
