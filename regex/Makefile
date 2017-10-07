@@ -10,10 +10,16 @@ INCLUDE = -I../../src
 CFLAGS = -fsanitize=fuzzer,address -std=gnu++14 -g -Wno-unused-parameter -Wno-reorder -Wno-sign-compare -Wno-address -Wno-noexcept-type -Wno-unknown-attributes -Wno-unknown-warning-option
 LDFLAGS = -fsanitize=fuzzer,address
 
-all: fuzzer_regex_match_self
+all: fuzzer_regex_match_self fuzzer_regex_search_self
+
+clean:
+	rm -f match_self.o search_self.o
 
 %.o: %.cc
 	$(CXX) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-fuzzer_regex_match_self: $(SRC:.cc=.o) regex_fuzzer_match_self.o
+fuzzer_regex_match_self: $(SRC:.cc=.o) match_self.o
+	$(CXX) $(LDFLAGS) -o $@ $^
+
+fuzzer_regex_search_self: $(SRC:.cc=.o) search_self.o
 	$(CXX) $(LDFLAGS) -o $@ $^
