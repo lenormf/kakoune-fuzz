@@ -1,6 +1,7 @@
 SRC = \
     ../../src/regex_impl.cc \
     ../../src/string.cc \
+    ../../src/string_utils.cc \
     ../../src/exception.cc \
     ../../src/memory.cc \
     ../../src/unit_tests.cc
