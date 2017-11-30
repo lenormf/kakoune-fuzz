@@ -1,5 +1,5 @@
 #include <string.hh>
-#include <regex_impl.hh>
+#include <regex.hh>
 #include <exception.hh>
 
 using namespace Kakoune;
@@ -10,8 +10,8 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
 
     try
     {
-        Vector<String::iterator> matches;
-        CompiledRegex re = compile_regex(data_str, RegexCompileFlags::None);
+        MatchResults<String::iterator> matches;
+        Regex re = Regex(data_str);
         regex_match(data_str.begin(), data_str.end(), matches, re);
     }
     catch (runtime_error&) {}

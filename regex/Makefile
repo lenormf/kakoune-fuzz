@@ -1,4 +1,5 @@
 SRC = \
+    ../../src/regex.cc \
     ../../src/regex_impl.cc \
     ../../src/string.cc \
     ../../src/string_utils.cc \
