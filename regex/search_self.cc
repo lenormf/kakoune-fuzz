@@ -12,7 +12,9 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
     {
         MatchResults<String::iterator> matches;
         Regex re = Regex(data_str);
-        regex_search(data_str.begin(), data_str.end(), matches, re);
+        regex_search(data_str.begin(), data_str.end(),
+                     data_str.begin(), data_str.end(),
+                     matches, re);
     }
     catch (runtime_error&) {}
     catch (utf8::invalid_codepoint&) {}
