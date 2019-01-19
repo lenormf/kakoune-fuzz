@@ -17,6 +17,9 @@ all: fuzzer_regex_match_self fuzzer_regex_search_self
 clean:
 	rm -f match_self.o search_self.o
 
+distclean: clean
+	rm -f fuzzer_regex_match_self fuzzer_regex_search_self
+
 %.o: %.cc
 	$(CXX) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
