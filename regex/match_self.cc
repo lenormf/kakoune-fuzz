@@ -15,7 +15,6 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
         regex_match(data_str.begin(), data_str.end(), matches, re);
     }
     catch (runtime_error&) {}
-    catch (utf8::invalid_codepoint&) {}
 
     return 0;
 }

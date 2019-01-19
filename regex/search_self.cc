@@ -17,7 +17,6 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
                      matches, re);
     }
     catch (runtime_error&) {}
-    catch (utf8::invalid_codepoint&) {}
 
     return 0;
 }
